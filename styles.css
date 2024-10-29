@@ -5,7 +5,7 @@
 /* Estilos globales */
 body {
     font-family: 'Roboto', sans-serif;
-    background: #0f0f0f url('bosque.png') repeat;
+    background: #0f0f0f url('https://i.pinimg.com/1200x/4c/df/80/4cdf8038e98746202ebbc197659c39b3.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #eaeaea;
     margin: 0;
@@ -55,17 +55,31 @@ body::before {
 
 /* Estilo del encabezado */
 header {
-    background-color: #1a1a1a;
+    position: relative;
     padding: 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    z-index: 1; /* Asegura que el contenido esté encima del pseudo-elemento */
 }
 
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Color y transparencia del fondo */
+    z-index: -1; /* Coloca el fondo detrás del contenido */
+    border-radius: inherit; /* Hereda cualquier borde o redondeo del header */
+}
+
+
+
 header h1 {
-    font-family: 'Creepster', cursive;
+    font-family: 'Ghoulish Frights', cursive;
     font-size: 3em;
     color: rgb(220, 20, 60);
     margin: 0;
@@ -100,9 +114,9 @@ header::after {
 }
 
 .index-link {
-    font-family: 'Creepster', cursive;
+    font-family: 'Ghoulish Frights', cursive;
     font-size: 1.5em;
-    color: #ff6347;
+    color: rgb(220, 20, 20);
     text-shadow: 2px 2px 4px #000;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -110,8 +124,8 @@ header::after {
 
 .index-link:hover {
     animation: glitch 0.8s infinite;
-    color: #ff0000;
-    text-shadow: 2px 2px 8px #ff0000, -2px -2px 8px #ff6347;
+    color: rgb(220, 20, 60);
+    text-shadow: 2px 2px 8px rgb(220, 20, 60), -2px -2px 8px rgb(220, 20, 60);
     transform: scale(1.05);
 }
 
@@ -119,11 +133,11 @@ header::after {
 @keyframes flicker {
     0%, 100% {
         opacity: 1;
-        text-shadow: 2px 2px 4px #000, 0 0 15px #ff6347, 0 0 5px #ff6347;
+        text-shadow: 2px 2px 4px #000, 0 0 15px rgb(220, 20, 20), 0 0 5px rgb(220, 20, 60);
     }
     50% {
         opacity: 0.8;
-        text-shadow: 2px 2px 4px #000, 0 0 10px #ff6347, 0 0 3px #ff6347;
+        text-shadow: 2px 2px 4px #000, 0 0 10px rgb(220, 20, 20), 0 0 3px rgb(220, 20, 60);
     }
 }
 
@@ -142,27 +156,28 @@ header::after {
 }
 
 /* Contenido principal */
-main, .diario, .podcast, .historia {
+main, .diario, .podcast, .historia, .casa {
     background-color: rgba(20, 20, 20, 0.95);
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     max-width: 800px;
-    margin: 40px auto;
+    margin: 15px auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
 h2, section h2 {
-    font-family: 'Creepster', cursive;
-    font-size: 2.5em;
-    color: #ff6347;
+    font-family: 'Ghoulish Frights', cursive;
+    font-size: 3em;
+    margin: 5px auto;
+    color: rgb(220, 20, 20);
     text-shadow: 2px 2px 4px #000;
     animation: flicker 1.5s infinite alternate-reverse;
 }
 
 h3, section h3 {
-    font-family: 'Creepster', cursive;
-    font-size: 2em;
-    color: #f00;
+    font-family: 'Ghoulish Frights', cursive;
+    font-size: 2.5em;
+    color: rgb(220, 20, 20);
     text-shadow: 2px 2px 4px #000;
     margin-bottom: 10px;
     animation: glitch 2s infinite;
@@ -171,6 +186,7 @@ h3, section h3 {
 p {
     line-height: 1.5;
     margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
 /* HR decorativo */
@@ -183,22 +199,18 @@ p {
     position: relative;
 }
 
-/* Podcast */
-.podcast {
-    background-color: #222;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 40px;
-}
+
 
 audio {
     display: block;
-    background-color: #333;
+    background-color: #000;
     border: 1px solid crimson;
     border-radius: 5px;
     padding: 5px;
-    margin-top: 20px;
+    margin: 20px auto; /* Centrado horizontal */
+    max-width: 400px; /* Tamaño máximo para evitar que sea demasiado ancho */
 }
+
 
 /* Imágenes */
 img {
@@ -209,7 +221,7 @@ img {
 }
 
 .casa-imagen {
-    border: 3px solid #ff6347;
+    border: 3px solid rgb(220, 20, 20);
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     transition: transform 0.3s;
 }
@@ -219,24 +231,42 @@ img {
     filter: grayscale(60%);
 }
 
-/* Footer */
-footer {
-    background-color: #1a1a1a;
-    text-align: center;
-    padding: 15px;
-    color: #eaeaea;
-    position: relative;
+.casa-imagen-pequena {
+    width: 80%; /* Ajusta el ancho de la imagen */
+    max-width: 400px; /* Tamaño máximo de la imagen */
+    display: block; /* Centra la imagen cuando se usa margin auto */
+    margin: 20px auto; /* Centrado horizontal */
+    border: 3px solid rgb(220, 20, 20);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    transition: transform 0.3s;
 }
 
-footer::after {
-    content: url('path/to/spiderweb-icon.png');
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    opacity: 0.5;
-    width: 30px;
-    height: auto;
+.casa-imagen-pequena:hover {
+    transform: scale(1.05);
+    filter: grayscale(60%);
 }
+
+/* Footer */
+footer {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    color: #eaeaea;
+    z-index: 1; /* Asegura que el contenido esté encima del pseudo-elemento */
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Color y transparencia del fondo */
+    z-index: -1; /* Coloca el fondo detrás del contenido */
+    border-radius: inherit; /* Hereda cualquier borde o redondeo del footer */
+}
+
 
 /* Media Queries */
 @media (max-width: 768px) {
@@ -245,7 +275,7 @@ footer::after {
     }
 
     main {
-        padding: 20px 10px;
+        padding: 10px 10px;
     }
 
     .index-link {
@@ -257,6 +287,6 @@ footer::after {
     }
 
     footer {
-        padding: 15px;
+        padding: 10px;
     }
 }
