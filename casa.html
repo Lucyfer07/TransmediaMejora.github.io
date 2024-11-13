@@ -28,14 +28,54 @@
             <p>Explora la historia y la atmósfera de la casa donde Logan enfrentó sus demonios:</p>
             <img src="casa.jpg" alt="Casa antigua" class="casa-imagen">
             
-            <p> La casa, una antigua construcción con sombras que susurran, se ha mantenido en pie a través de los años, reflejando los miedos y anhelos de quienes han cruzado su umbral. Cada habitación guarda secretos, y cada pasillo cuenta una historia. Al recorrer sus espacios, se siente la presencia de Logan, atrapado entre el eco del silencio y el clamor de su propia soledad.</p>
-            
+            <p>La casa, una antigua construcción con sombras que susurran, se ha mantenido en pie a través de los años, reflejando los miedos y anhelos de quienes han cruzado su umbral. Cada habitación guarda secretos, y cada pasillo cuenta una historia. Al recorrer sus espacios, se siente la presencia de Logan, atrapado entre el eco del silencio y el clamor de su propia soledad.</p>
+        </section>
+
+        <!-- Sección de comentarios -->
+        <section class="comentarios">
+            <h2>Deja tu comentario</h2>
+            <form id="form-comentarios">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="comentario">Comentario:</label>
+                <textarea id="comentario" name="comentario" rows="4" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+
+            <!-- Lugar para mostrar comentarios -->
+            <div id="comentarios-lista">
+                <h3>Comentarios recientes</h3>
+                <!-- Aquí se mostrarán los comentarios -->
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 El Eco del Vacío</p>
     </footer>
+
+    <script>
+        // Lógica básica para manejar comentarios
+        document.getElementById('form-comentarios').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Obtener el nombre y comentario
+            const nombre = document.getElementById('nombre').value;
+            const comentario = document.getElementById('comentario').value;
+
+            // Crear un nuevo elemento para el comentario
+            const comentarioElemento = document.createElement('div');
+            comentarioElemento.classList.add('comentario');
+            comentarioElemento.innerHTML = `<strong>${nombre}</strong>: ${comentario}`;
+            
+            // Agregar el comentario a la lista de comentarios
+            document.getElementById('comentarios-lista').appendChild(comentarioElemento);
+
+            // Limpiar el formulario
+            document.getElementById('form-comentarios').reset();
+        });
+    </script>
 </body>
 </html>
-
