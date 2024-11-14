@@ -290,3 +290,136 @@ footer::before {
         padding: 10px;
     }
 }
+/* Estilos básicos */
+body {
+    background-color: #1b1b1b;
+    color: #e6e6e6;
+    font-family: Arial, sans-serif;
+}
+
+header h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 2.5em;
+    color: #e60000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+hr.decorativo {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 10px 0;
+}
+
+/* Estilos para la sección de comentarios */
+.comentarios {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #2b2b2b;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.comentarios h2 {
+    font-family: 'Creepster', cursive;
+    font-size: 2em;
+    color: #e60000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#form-comentarios label {
+    font-size: 1em;
+    color: #ccc;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#form-comentarios input[type="text"],
+#form-comentarios textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #333;
+    border: 1px solid #444;
+    color: #e6e6e6;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+#form-comentarios button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #e60000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-family: 'Creepster', cursive;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#form-comentarios button:hover {
+    background-color: #b30000;
+}
+
+/* Estilos para los comentarios */
+#comentarios-lista {
+    margin-top: 20px;
+}
+
+#comentarios-lista h3 {
+    font-family: 'Creepster', cursive;
+    font-size: 1.8em;
+    color: #e60000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.comentario {
+    background-color: #333;
+    border: 1px solid #444;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.comentario strong {
+    color: #e60000;
+    font-family: 'Creepster', cursive;
+    font-size: 1.2em;
+}
+
+.comentario::before {
+    content: "«";
+    color: #e60000;
+    font-size: 1.5em;
+}
+
+.comentario::after {
+    content: "»";
+    color: #e60000;
+    font-size: 1.5em;
+}
+/* Estilo para el botón "Eliminar" */
+.eliminar-comentario {
+    background-color: #2e2e2e; /* Fondo oscuro */
+    color: #ff4d4d; /* Texto en rojo intenso */
+    border: 1px solid #ff4d4d; /* Borde rojo */
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px; /* Separación del texto del comentario */
+}
+
+/* Efecto al pasar el cursor por encima */
+.eliminar-comentario:hover {
+    background-color: #ff4d4d; /* Fondo rojo en hover */
+    color: #2e2e2e; /* Texto oscuro en hover */
+    transform: scale(1.05); /* Ligero aumento de tamaño */
+}

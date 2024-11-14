@@ -57,25 +57,70 @@
     </footer>
 
     <script>
-        // Lógica básica para manejar comentarios
+        // Función para cargar comentarios almacenados en el Local Storage
+        function cargarComentarios() {
+            const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
+            comentariosGuardados.forEach(function(comentario, index) {
+                agregarComentario(comentario.nombre, comentario.comentario, index);
+            });
+        }
+    
+        // Función para agregar un comentario al DOM con opción de eliminar
+        function agregarComentario(nombre, comentario, index) {
+            const comentarioElemento = document.createElement('div');
+            comentarioElemento.classList.add('comentario');
+            comentarioElemento.innerHTML = `
+                <strong>${nombre}</strong>: ${comentario}
+                <button class="eliminar-comentario" data-index="${index}">Eliminar</button>
+            `;
+    
+            document.getElementById('comentarios-lista').appendChild(comentarioElemento);
+    
+            // Agregar evento para el botón "Eliminar"
+            comentarioElemento.querySelector('.eliminar-comentario').addEventListener('click', function() {
+                eliminarComentario(index);
+            });
+        }
+    
+        // Función para eliminar un comentario del DOM y Local Storage
+        function eliminarComentario(index) {
+            const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
+    
+            // Eliminar el comentario del array
+            comentariosGuardados.splice(index, 1);
+    
+            // Actualizar Local Storage
+            localStorage.setItem('comentarios', JSON.stringify(comentariosGuardados));
+    
+            // Actualizar el DOM recargando los comentarios
+            document.getElementById('comentarios-lista').innerHTML = '';
+            cargarComentarios();
+        }
+    
+        // Evento de envío de formulario
         document.getElementById('form-comentarios').addEventListener('submit', function(event) {
             event.preventDefault();
             
             // Obtener el nombre y comentario
             const nombre = document.getElementById('nombre').value;
             const comentario = document.getElementById('comentario').value;
-
-            // Crear un nuevo elemento para el comentario
-            const comentarioElemento = document.createElement('div');
-            comentarioElemento.classList.add('comentario');
-            comentarioElemento.innerHTML = `<strong>${nombre}</strong>: ${comentario}`;
-            
-            // Agregar el comentario a la lista de comentarios
-            document.getElementById('comentarios-lista').appendChild(comentarioElemento);
-
+    
+            // Guardar el comentario en el Local Storage
+            const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
+            comentariosGuardados.push({ nombre: nombre, comentario: comentario });
+            localStorage.setItem('comentarios', JSON.stringify(comentariosGuardados));
+    
+            // Agregar el comentario al DOM
+            agregarComentario(nombre, comentario, comentariosGuardados.length - 1);
+    
             // Limpiar el formulario
             document.getElementById('form-comentarios').reset();
         });
+    
+        // Cargar comentarios al cargar la página
+        document.addEventListener('DOMContentLoaded', cargarComentarios);
     </script>
+    
+    
 </body>
 </html>
